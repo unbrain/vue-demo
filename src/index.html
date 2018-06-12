@@ -5,29 +5,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/default.css">
     <title>简历编辑器</title>
+
 </head>
 
 <body>
-    
-    <script src="../vendors/av-min.js"></script>
-    <script>
-        var APP_ID = 'AMUIl1h2iLFOVlVniKNMlk1F-gzGzoHsz';
-        var APP_KEY = 'APeif28DY1R82SgNa6EyeBkq';
+    <div class="page">
+        <aside>
+            <div class="up">
+                <div>保存</div>
+                <div>分享</div>
+                <div>换肤</div>
+                <div>打印</div>
+            </div>
 
-        AV.init({
-            appId: APP_ID,
-            appKey: APP_KEY
-        });
-        
-        var TestObject = AV.Object.extend('TestObject');
-        var testObject = new TestObject();
-        testObject.save({
-            words: 'Hello World!'
-        }).then(function (object) {
-            alert('LeanCloud Rocks!');
-        })
-    </script>
+
+            <div class="down">
+                <div>登出</div>
+            </div>
+        </aside>
+        <main>
+            <div class="line">
+                <div class="line-h">
+                    <h1>姓名</h1>
+                </div>
+
+                <div class="showwrapper">
+
+                    <div class="show">
+                        <span>
+                            <b>性别</b> 男</span>
+                        <span>
+                            <b>应聘职位</b>
+                        </span>Web前端工程师</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="line-h">
+                    <h1>联系方式</h1>
+                </div>
+
+                <div class="showwrapper">
+                    <div class="show">
+                        <span>
+                            <b>手机</b> 1231231234</span>
+                        <span>
+                            <b>Email </b>
+                            <a href="http://jion@baidu.com">jion@baidu.com</a>
+                        </span>
+                        <span>
+                            <b>个人主页 </b>
+                            <a href="http://unbrain.github.io">Github</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="line-h">
+                    <h1>能力描述</h1>
+                </div>
+
+                <div class="showwrapper">
+                    <div class="show">
+                        <p>
+                            <b>技术能力</b>
+                        </p>
+                        <p>熟练掌握HTML，CSS，JavaScript</p>
+                    </div>
+                    <div class="show">
+                        <p>
+                            <b>综合能力</b>
+                        </p>
+                        <p>良好的沟通，主动积极，努力勤奋</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="line-h">
+                    <h1>教育经历</h1>
+                </div>
+
+                <div class="showwrapper">
+
+                    <div class="show">
+                        <p>
+                            <b>本科</b>
+                        </p>
+                        <p>百度前端技术学院小微学院</p>
+                    </div>
+                    <div class="show">
+                        <p>
+                            <b>研究生</b>
+                        </p>
+                        <p>百度前端技术学院大斌学院</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="line">
+                <div class="line-h">
+                    <h1>项目经历</h1>
+                </div>
+
+                <div class="showwrapper">
+
+                    <div class="show">
+                        <p>
+                            <b>小度小杜</b>
+                        </p>
+                        <p>作为前端工程师角色参与了ABC组件的开发</p>
+                    </div>
+                    <div class="show">
+                        <p>
+                            <b>SAN Doc</b>
+                        </p>
+                        <p>作为文档工程师参与了SAN Doc编写</p>
+                    </div>
+                </div>
+            </div>
+
+
+    </div>
+
+    </main>
+    </div>
+
+    <script src="../vendors/av-min.js"></script>
+    <script src="../vendors/vue.min.js"></script>
+    <script src="./js/av.js"></script>
 </body>
 
 </html>

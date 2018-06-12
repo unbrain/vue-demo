@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/unbrain/vue-demo#readme",
   "dependencies": {
-    "leancloud-storage": "^3.7.2"
+    "leancloud-storage": "^3.7.2",
+    "vue": "^2.5.16"
   }
 }

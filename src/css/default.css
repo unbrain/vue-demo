@@ -1,0 +1,50 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+*::after,
+*::before {
+    box-sizing: border-box;
+}
+
+.page {
+    background-color: #29282C;
+    display: flex;
+    height: 100vh;
+    color: #6C6C6F;
+}
+
+.page>aside {
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    border: 1px solid red;
+    justify-content: space-between;
+    background-color: #2C2C31;
+}
+
+.page>aside>.up {
+    display: flex;
+    flex-direction: column;
+}
+
+.page>aside>div>div {
+    border: 1px solid yellow;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+
+.page>aside>div>div :hover {
+    background-color: #2CB9B8;
+}
+
+.page>main {
+    padding: 20px;
+    flex-grow: 1;
+    border: 1px solid green;
+}
