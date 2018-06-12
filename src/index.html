@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简历编辑器</title>
+</head>
+
+<body>
+    
+    <script src="../vendors/av-min.js"></script>
+    <script>
+        var APP_ID = 'AMUIl1h2iLFOVlVniKNMlk1F-gzGzoHsz';
+        var APP_KEY = 'APeif28DY1R82SgNa6EyeBkq';
+
+        AV.init({
+            appId: APP_ID,
+            appKey: APP_KEY
+        });
+        
+        var TestObject = AV.Object.extend('TestObject');
+        var testObject = new TestObject();
+        testObject.save({
+            words: 'Hello World!'
+        }).then(function (object) {
+            alert('LeanCloud Rocks!');
+        })
+    </script>
+</body>
+
+</html>
