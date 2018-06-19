@@ -2,7 +2,7 @@ Vue.component('editable-span', {
     props: ['value'],
     template: `
         <span class="editable-span">
-            <span v-show="!editing">{{ value }}</span>
+            <span @click="editing=!editing" v-show="!editing">{{ value }}</span>
             <input v-show="editing" type="text" :value="value" @input="editTri" @keyup.enter="editing=!editing">
             <svg class="icon" aria-hidden="true" @click="editing=!editing">
                 <use xlink:href="#icon-edit"></use>
@@ -29,6 +29,9 @@ var app = new Vue({
             phone: '——————',
             school: '二本',
             email: 'marsorsun@gmil.com',
+            description: '心猿码意',
+            about: `Now I have come to the crossroads in my life. I always knew what the right path was. Without exception, I knew. But I never
+                    took it, you know why? It was too damn hard`,
         },
     },
     methods: {

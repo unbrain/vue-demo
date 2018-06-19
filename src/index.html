@@ -81,7 +81,7 @@
                                     <span class="triangle"></span>
                                 </span>
                                 <h1><editable-span :value="resume.name" @edit="onEdit('name', $event)"></editable-span></h1>
-                                <p>认真的切图仔</p>
+                                <p><editable-span :value="resume.description" @edit="onEdit('description', $event)"></p>
                                 <hr>
                                 <dl>
                                     <dt>年龄</dt>
@@ -128,8 +128,7 @@
                 </p>
 
                 <p class="selfIntroduction">
-                    Now I have come to the crossroads in my life. I always knew what the right path was. Without exception, I knew. But I never
-                    took it, you know why? It was too damn hard
+                    <editable-span :value="resume.about" @edit="onEdit('about', $event)"></editable-span>
                 </p>
                 <section data-y class="skills" id="jSkills">
                     <h2>技能</h2>
