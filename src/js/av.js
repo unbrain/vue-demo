@@ -14,5 +14,3 @@ AV.init({
 // }).then(function (object) {
 //     alert('LeanCloud Rocks!');
 // })
-
-console.log(Vue)

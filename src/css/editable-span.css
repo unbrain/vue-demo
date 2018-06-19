@@ -1,0 +1,7 @@
+.editable-span>svg {
+    visibility: hidden;
+}
+
+.editable-span:hover>svg {
+    visibility: visible;
+}
