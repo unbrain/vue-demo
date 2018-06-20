@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="./css/default.css">
     <link rel="stylesheet" href="./css/resume.css">
     <link rel="stylesheet" href="./css/editable-span.css">
-    <script src="//at.alicdn.com/t/font_712967_jtdpzjpq0zf.js"></script>
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="//at.alicdn.com/t/font_712967_063qy5zmgq7.js"></script>
     <title>简历编辑器</title>
 
 </head>
@@ -17,7 +18,7 @@
     <div class="page" id="app">
         <aside>
             <div class="up">
-                <div>保存</div>
+                <div @click="onClickSave()">保存</div>
                 <div>分享</div>
                 <div>换肤</div>
                 <div>打印</div>
@@ -25,7 +26,7 @@
 
 
             <div class="down">
-                <div>登出</div>
+                <div @click="logOut()">登出</div>
             </div>
         </aside>
         <main>
@@ -77,21 +78,34 @@
                     <div data-y class="userCard" id="jAbout">
                         <div class="pictureandtext clearfix">
                             <div class="text">
-                                <span class="welcome">前端工程师
+                                <span class="welcome">
+                                    <editable-span :value="resume.job" @edit="onEdit('job', $event)"></editable-span>
                                     <span class="triangle"></span>
                                 </span>
-                                <h1><editable-span :value="resume.name" @edit="onEdit('name', $event)"></editable-span></h1>
-                                <p><editable-span :value="resume.description" @edit="onEdit('description', $event)"></p>
+                                <h1>
+                                    <editable-span :value="resume.name" @edit="onEdit('name', $event)"></editable-span>
+                                </h1>
+                                <p>
+                                    <editable-span :value="resume.description" @edit="onEdit('description', $event)">
+                                </p>
                                 <hr>
                                 <dl>
                                     <dt>年龄</dt>
-                                    <dd><editable-span :value="resume.age" @edit="onEdit('age', $event)"></dd>
+                                    <dd>
+                                        <editable-span :value="resume.age" @edit="onEdit('age', $event)">
+                                    </dd>
                                     <dt>学校</dt>
-                                    <dd><editable-span :value="resume.school" @edit="onEdit('school', $event)"></dd>
+                                    <dd>
+                                        <editable-span :value="resume.school" @edit="onEdit('school', $event)">
+                                    </dd>
                                     <dt>邮箱</dt>
-                                    <dd><editable-span :value="resume.email" @edit="onEdit('email', $event)"></dd>
+                                    <dd>
+                                        <editable-span :value="resume.email" @edit="onEdit('email', $event)">
+                                    </dd>
                                     <dt>手机</dt>
-                                    <dd><editable-span :value="resume.phone" @edit="onEdit('phone', $event)"></editable-span></dd>
+                                    <dd>
+                                        <editable-span :value="resume.phone" @edit="onEdit('phone', $event)"></editable-span>
+                                    </dd>
                                 </dl>
                             </div>
                             <div class="picture">
@@ -282,7 +296,50 @@
 
             </main>
 
-
+            <div v-show="login" class="login">
+                <form class="form" @submit.prevent="loginUser">
+                    <h1>登录</h1>
+                    <div class="close" @click="login=false">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-close"></use>
+                        </svg>
+                    </div>
+                    <div class="row">
+                        <label for="">邮箱</label>
+                        <input type="text">
+                    </div>
+                    <div class="row">
+                        <label for="">密码</label>
+                        <input type="password">
+                    </div>
+                    <div class="actions">
+                        <button type="submit">提交</button>
+                        <button @click="login = false; signUp = true " type="button">注册</button>
+                    </div>
+                </form>
+            </div>
+            <div v-show="signUp" class="signUp">
+                <form class="form" @submit.prevent="saveUser()">
+                    <h1>注册</h1>
+                    <div class="close" @click="signUp=false">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-close"></use>
+                        </svg>
+                    </div>
+                    <div class="row">
+                        <label for="">邮箱</label>
+                        <input type="text" v-model="signUpData.email">
+                    </div>
+                    <div class="row">
+                        <label for="">密码</label>
+                        <input type="password" v-model="signUpData.password">
+                    </div>
+                    <div class="actions">
+                        <button type="submit">提交</button>
+                        <button @click="signUp = false; login = true" type="button">登录</button>
+                    </div>
+                </form>
+            </div>
     </div>
 
     </main>
@@ -293,7 +350,7 @@
     <script src="./js/av.js"></script>
     <script src="./js/app.js"></script>
     <script>
-        
+
 
     </script>
 </body>

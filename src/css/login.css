@@ -1,0 +1,39 @@
+.login,
+.signUp {
+    padding: .5em 1em;
+    position: fixed;
+    /* display: flex;
+    align-items: center;
+    justify-content: center; */
+    width: 300px;
+    height: 400px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    background: #ddd;
+}
+
+.login .row,
+.signUp .row {
+    margin: .5em 0;
+}
+
+.login .close,
+.signUp .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.login .close:hover,
+.signUp .close:hover {
+    transform: scale(2);
+}
+
+.login form,
+.signUp form {
+    position: relative;
+}
