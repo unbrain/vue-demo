@@ -26,7 +26,8 @@
 
 
             <div class="down">
-                <div @click="logOut()">登出</div>
+                <div @click="logOut()" v-show="currentUser.objectId" v-cloak>登出</div>
+                <div @click="onClickSave()" v-show="!currentUser.objectId" v-cloak>注册</div>
             </div>
         </aside>
         <main>
@@ -296,7 +297,7 @@
 
             </main>
 
-            <div v-show="login" class="login">
+            <div v-show="login" class="login" v-cloak>
                 <form class="form" @submit.prevent="loginUser">
                     <h1>登录</h1>
                     <div class="close" @click="login=false">
@@ -305,12 +306,12 @@
                         </svg>
                     </div>
                     <div class="row">
-                        <label for="">邮箱</label>
-                        <input type="text">
+                        <label for="" >邮箱</label>
+                        <input type="text" v-model="loginData.email">
                     </div>
                     <div class="row">
                         <label for="">密码</label>
-                        <input type="password">
+                        <input type="password" v-model="loginData.password">
                     </div>
                     <div class="actions">
                         <button type="submit">提交</button>
@@ -318,7 +319,7 @@
                     </div>
                 </form>
             </div>
-            <div v-show="signUp" class="signUp">
+            <div v-show="signUp" class="signUp" v-cloak> 
                 <form class="form" @submit.prevent="saveUser()">
                     <h1>注册</h1>
                     <div class="close" @click="signUp=false">

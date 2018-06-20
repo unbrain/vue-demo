@@ -22,6 +22,7 @@ Vue.component('editable-span', {
 let app = new Vue({
     el: '#app',
     data: {
+
         login: false,
         signUp: false,
         resume: {
@@ -42,31 +43,38 @@ let app = new Vue({
         },
         loginData: {
             email: '',
-            password: '',   
+            password: '',
+        },
+        currentUser: {
+            objectId: undefined,
+            email: '',
         },
     },
     methods: {
-        onEdit(key, value) { 
+        onEdit(key, value) {
             this.resume[key] = value
         },
-        onClickSave(){
+        onClickSave() {
             let currentUser = AV.User.current()
             console.log(currentUser)
-            if(!currentUser){
+            if (!currentUser) {
                 this.signUp = true
-            }else{
+            } else {
                 this.saveResume()
             }
         },
-        saveResume(){
-            let { id } = AV.User.current()
-            var todo = AV.Object.createWithoutData('User', id)
+        saveResume() {
+            let { objectId } = AV.User.current().toJSON()
+            var todo = AV.Object.createWithoutData('User', objectId)
             // 修改属性
             todo.set('resume', this.resume)
             // 保存到云端
-            todo.save();
+            todo.save().then(() => {
+                alert("保存成功")
+            });
+
         },
-        saveUser(){
+        saveUser() {
             console.log(this.signUpData)
             // 新建 AVUser 对象实例
             var user = new AV.User()
@@ -76,32 +84,54 @@ let app = new Vue({
             user.setPassword(this.signUpData.password)
             // 设置邮箱
             user.setEmail(this.signUpData.email)
-            user.signUp().then(function (loggedInUser) {
+            user.signUp().then((loggedInUser) => {
+                this.signUp = false
+                this.currentUser.objectId = loggedInUser.toJSON().objectId
+                this.currentUser.email = loggedInUser.toJSON().email
+                alert('注册成功')
                 console.log(loggedInUser)
             }, function (error) {
-                alert(error.message)
-                console.log(error)
-                
+                alert(error.rawMessage)
             });
         },
-        loginUser(){
-            AV.User.logIn(this.loginData.email, this.loginData.password).then(function (loggedInUser) {
-                alert('success')
-                console.log(loggedInUser);
+        loginUser() {
+            AV.User.logIn(this.loginData.email, this.loginData.password).then((loggedInUser) => {
+                this.login = false
+                this.currentUser.objectId = loggedInUser.toJSON().objectId
+                this.currentUser.email = loggedInUser.toJSON().email
+                alert('登录成功')
+                console.log(loggedInUser)
             }, function (error) {
-                if(error.code == 211){
-                    alert('用户不存在')
-                }else if(error.code == 210){
-                    alert('邮箱和密码不匹配')
-                }
+                alert(error.rawMessage)
             });
         },
-        logOut(){
-            AV.User.logOut()
-            // 现在的 currentUser 是 null 了
-            var currentUser = AV.User.current()
+        logOut() {
+            if (!this.currentUser.objectId) {
+                alert('请先登录')
+            } else {
+                this.currentUser = {
+                    objectId: undefined,
+                    email: '',
+                },
+                    AV.User.logOut()// 现在的 currentUser 是 null 了
+                alert("用户已登出")
+            }
             window.location.reload
-            console.log("用户已登出")
+        },
+        getResume() {
+            var query = new AV.Query('User')
+            query.get(this.currentUser.objectId).then((user) => {
+                this.resume = user.toJSON().resume
+            }, (error) => {
+                // 异常处理
+            });
         },
     },
 })
+
+let currentUser = AV.User.current()
+if (currentUser) {
+    app.currentUser = currentUser.toJSON()
+    console.log(app.currentUser)
+    app.getResume()
+}
