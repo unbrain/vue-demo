@@ -121,7 +121,7 @@ let app = new Vue({
         getResume() {
             var query = new AV.Query('User')
             query.get(this.currentUser.objectId).then((user) => {
-                this.resume = user.toJSON().resume
+                Object.assign(this.resume, user.toJSON().resume) 
             }, (error) => {
                 // 异常处理
             });
