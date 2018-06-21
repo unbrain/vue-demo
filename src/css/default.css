@@ -33,7 +33,7 @@ li {
 .page>aside {
     display: flex;
     flex-direction: column;
-    width: 100px;
+    width: 80px;
     justify-content: space-between;
     background-color: #2C2C31;
     box-shadow: 10px 0px 37px -3px rgba(0, 0, 0, 0.6);
@@ -45,16 +45,18 @@ li {
 }
 
 .page>aside>div>div:hover {
-    background: #2CB9B8;
+    transition: 2s;
+    background: #B4E1DC;
 }
 
 .page>aside>div>div {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100px;
+    height: 80px;
     width: 100%;
     cursor: pointer;
+    border-radius: 50%;
 }
 
 .page>main {
