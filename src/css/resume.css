@@ -285,3 +285,9 @@ input {
     border-radius: 1px;
     margin-bottom: 10px;
 }
+
+.exitPreview{
+    position: fixed;
+    top: 40px;
+    left: 40px;
+}

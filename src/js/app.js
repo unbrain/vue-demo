@@ -1,10 +1,10 @@
 Vue.component('editable-span', {
-    props: ['value'],
+    props: ['value', 'disabled'],
     template: `
         <span class="editable-span">
-            <span @click="editing=!editing" v-show="!editing">{{ value }}</span>
+            <span @click="editing = disabled ? editing : !editing" v-show="!editing">{{ value }}</span>
             <input v-show="editing" type="text" :value="value" @input="editTri" @keyup.enter="editing=!editing">
-            <svg class="icon" aria-hidden="true" @click="editing=!editing">
+            <svg v-if='!disabled' class="icon" aria-hidden="true" @click="editing=!editing">
                 <use xlink:href="#icon-edit"></use>
             </svg>
         </span>
@@ -26,6 +26,8 @@ let app = new Vue({
         signUpVisible: false,
         shareVisible: false,
         shareURL: '',
+        previewResume:{},
+        mode: 'edit',
         resume: {
             name: '李安',
             age: '22',
@@ -51,6 +53,7 @@ let app = new Vue({
                 { name: '无脸人', skills: '原生 JavaScript、响应式，Prism.js, CSS annimation', description: '该项目使得代码展示在屏幕，并根据代码画出了一个无脸人' },
                 { name: '网易云音乐', skills: 'jQuery，leandcloud，七牛云', description: '该项目使用 jQuery 模仿网易云音乐手机端，完成手机端功能并写有 PC 端后台。' },
             ],
+            
         },
         signUpData: {
             email: '',
@@ -64,7 +67,22 @@ let app = new Vue({
             objectId: undefined,
             email: '',
         },
+        previewUser: {
+            objectId: undefined,
+        }
 
+    },
+    watch: {
+        'currentUser.objectId': function (newVal, oldVal) {
+            if (newVal) {
+                this.getResume(this.currentUser)
+            }
+        }
+    },
+    computed: {
+        displayResume() {
+            return this.mode === 'preview' ? this.previewResume : this.resume
+        }
     },
     methods: {
         onEdit(key, value) {
@@ -127,7 +145,7 @@ let app = new Vue({
                 this.currentUser.objectId = loggedInUser.toJSON().objectId
                 this.currentUser.email = loggedInUser.toJSON().email
                 alert('登录成功')
-                app.getResume()
+                app.getResume(this.currentUser)
             }, function (error) {
                 alert(error.rawMessage)
             });
@@ -145,10 +163,10 @@ let app = new Vue({
             }
             window.location.reload()
         },
-        getResume() {
+        getResume(user) {
             var query = new AV.Query('User')
-            query.get(this.currentUser.objectId).then((user) => {
-                Object.assign(this.resume, user.toJSON().resume)
+            return query.get(user.objectId).then((user) => {
+                return user.toJSON().resume
             }, (error) => {
                 // 异常处理
             });
@@ -169,10 +187,28 @@ let app = new Vue({
     },
 })
 
+// 获取当前用户
 let currentUser = AV.User.current()
 if (currentUser) {
     app.currentUser = currentUser.toJSON()
-    app.getResume()
+    app.getResume(app.currentUser).then(resume => {
+        app.resume = resume
+    })
     app.shareURL = location.origin + location.pathname + '?user_id' + app.currentUser.objectId
-    console.log(app.shareURL)
+}
+
+
+
+// 获取预览用户的 id
+
+let search = location.search
+//?user_id5b29f2c09f5454003bbd901f
+let reg = /user_id([^&]+)/
+let matches = search.match(reg)
+if (matches) {
+    app.previewUser.objectId = matches[1]
+    app.mode = 'preview'
+    app.getResume(app.previewUser).then(resume => {
+        app.previewResume = resume
+    })
 }
