@@ -2,15 +2,6 @@ body>div>main>main {
     margin-top: -340px;
 }
 
-.logo {
-    float: left;
-    font-size: 24px;
-    font-family: 'Arial Black';
-    padding-top: 3px;
-    padding-bottom: 4px;
-    font-weight: bold;
-}
-
 button {
     padding: 0 1em;
     border: transparent;
@@ -88,20 +79,18 @@ input {
 
 .pictureandtext {
     padding: 55px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .userCard .picture {
-    float: left;
-    margin-left: 65px;
     background: url(http://p86y5hc6k.bkt.clouddn.com/cap.jpg) center;
     width: 300px;
     height: 350px;
 }
 
-.userCard .text {
-    float: left;
-    width: 460px;
-}
+.userCard .text {}
 
 .userCard .text h1 {
     margin-top: 25px;
@@ -262,6 +251,13 @@ input {
     padding-bottom: 40px;
 }
 
+@media (max-width: 450px) {
+    .skills li {
+        width: 98%;
+        padding-bottom: 40px;
+    }
+}
+
 .works li {
     width: 100%;
     padding-bottom: 40px;
@@ -286,7 +282,7 @@ input {
     margin-bottom: 10px;
 }
 
-.exitPreview{
+.exitPreview {
     position: fixed;
     top: 40px;
     left: 40px;
