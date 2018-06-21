@@ -22,9 +22,8 @@ Vue.component('editable-span', {
 let app = new Vue({
     el: '#app',
     data: {
-
-        login: false,
-        signUp: false,
+        loginVisible: false,
+        signUpVisible: false,
         resume: {
             name: '李安',
             age: '22',
@@ -84,7 +83,7 @@ let app = new Vue({
             let currentUser = AV.User.current()
             console.log(currentUser)
             if (!currentUser) {
-                this.signUp = true
+                this.signUpVisible = true
             } else {
                 this.saveResume()
             }
@@ -111,7 +110,7 @@ let app = new Vue({
             // 设置邮箱
             user.setEmail(this.signUpData.email)
             user.signUp().then((loggedInUser) => {
-                this.signUp = false
+                this.signUpVisible = false
                 this.currentUser.objectId = loggedInUser.toJSON().objectId
                 this.currentUser.email = loggedInUser.toJSON().email
                 alert('注册成功')
@@ -122,11 +121,11 @@ let app = new Vue({
         },
         loginUser() {
             AV.User.logIn(this.loginData.email, this.loginData.password).then((loggedInUser) => {
-                this.login = false
+                this.loginVisible = false
                 this.currentUser.objectId = loggedInUser.toJSON().objectId
                 this.currentUser.email = loggedInUser.toJSON().email
                 alert('登录成功')
-                console.log(loggedInUser)
+                window.location.reload()
             }, function (error) {
                 alert(error.rawMessage)
             });
@@ -139,10 +138,10 @@ let app = new Vue({
                     objectId: undefined,
                     email: '',
                 },
-                    AV.User.logOut()// 现在的 currentUser 是 null 了
+                AV.User.logOut()// 现在的 currentUser 是 null 了
                 alert("用户已登出")
             }
-            window.location.reload
+            window.location.reload()
         },
         getResume() {
             var query = new AV.Query('User')

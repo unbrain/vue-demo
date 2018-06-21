@@ -25,7 +25,7 @@
             </div>
 
 
-            <div class="down">
+            <div class="down" v-cloak>
                 <div @click="logOut()" v-show="currentUser.objectId" v-cloak>登出</div>
                 <div @click="onClickSave()" v-show="!currentUser.objectId" v-cloak>注册</div>
             </div>
@@ -204,10 +204,10 @@
                 </p>
             </main>
 
-            <div v-show="login" class="login" v-cloak>
+            <div v-show="loginVisible" class="login" v-cloak>
                 <form class="form" @submit.prevent="loginUser">
                     <h1>登录</h1>
-                    <div class="close" @click="login=false">
+                    <div class="close" @click="loginVisible=false">
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-close"></use>
                         </svg>
@@ -222,14 +222,14 @@
                     </div>
                     <div class="actions">
                         <button type="submit">提交</button>
-                        <button @click="login = false; signUp = true " type="button">注册</button>
+                        <button @click="loginVisible = false; signUpVisible = true " type="button">注册</button>
                     </div>
                 </form>
             </div>
-            <div v-show="signUp" class="signUp" v-cloak>
+            <div v-show="signUpVisible" class="signUp" v-cloak>
                 <form class="form" @submit.prevent="saveUser()">
                     <h1>注册</h1>
-                    <div class="close" @click="signUp=false">
+                    <div class="close" @click="signUpVisible=false">
                         <svg class="icon" aria-hidden="true">
                             <use xlink:href="#icon-close"></use>
                         </svg>
@@ -244,7 +244,7 @@
                     </div>
                     <div class="actions">
                         <button type="submit">提交</button>
-                        <button @click="signUp = false; login = true" type="button">登录</button>
+                        <button @click="signUpVisible = false; loginVisible = true" type="button">登录</button>
                     </div>
                 </form>
             </div>
