@@ -1,0 +1,13 @@
+body {
+    padding: 30px;
+}
+
+.page aside,
+.exitPreview,
+.resumeDown,
+.appendWork,
+.minusWork,
+.appendSkill,
+.minusSkill {
+    display: none;
+}
