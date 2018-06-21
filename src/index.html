@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/resume.css">
     <link rel="stylesheet" href="./css/editable-span.css">
     <link rel="stylesheet" href="./css/login.css">
+    <link rel="stylesheet" href="./css/share.css">
     <script src="//at.alicdn.com/t/font_712967_knwn14ro9f.js"></script>
     <title>简历编辑器</title>
 
@@ -19,15 +20,15 @@
         <aside>
             <div class="up">
                 <div @click="onClickSave()">保存</div>
-                <div>分享</div>
+                <div @click="shareVisible = !shareVisible">分享</div>
                 <div>换肤</div>
                 <div>打印</div>
             </div>
 
 
             <div class="down" v-cloak>
-                <div @click="logOut()" v-show="currentUser.objectId" v-cloak>登出</div>
-                <div @click="onClickSave()" v-show="!currentUser.objectId" v-cloak>注册</div>
+                <div @click="logOut()" v-show="currentUser.objectId">登出</div>
+                <div @click="onClickSave()" v-show="!currentUser.objectId">注册</div>
             </div>
         </aside>
         <main>
@@ -247,6 +248,15 @@
                         <button @click="signUpVisible = false; loginVisible = true" type="button">登录</button>
                     </div>
                 </form>
+            </div>
+            <div v-show="shareVisible" class="share" v-cloak>
+                <h1>分享链接</h1>
+                <div class="close" @click="shareVisible=false">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-close"></use>
+                    </svg>
+                </div>
+                <textarea readonly>{{ shareURL }}</textarea>
             </div>
     </div>
 

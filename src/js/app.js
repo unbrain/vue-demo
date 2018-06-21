@@ -24,6 +24,8 @@ let app = new Vue({
     data: {
         loginVisible: false,
         signUpVisible: false,
+        shareVisible: false,
+        shareURL: '',
         resume: {
             name: '李安',
             age: '22',
@@ -125,7 +127,7 @@ let app = new Vue({
                 this.currentUser.objectId = loggedInUser.toJSON().objectId
                 this.currentUser.email = loggedInUser.toJSON().email
                 alert('登录成功')
-                window.location.reload()
+                app.getResume()
             }, function (error) {
                 alert(error.rawMessage)
             });
@@ -138,7 +140,7 @@ let app = new Vue({
                     objectId: undefined,
                     email: '',
                 },
-                AV.User.logOut()// 现在的 currentUser 是 null 了
+                    AV.User.logOut()// 现在的 currentUser 是 null 了
                 alert("用户已登出")
             }
             window.location.reload()
@@ -163,12 +165,14 @@ let app = new Vue({
         minusWork(index) {
             this.resume.works.splice(index, 1)
         },
+
     },
 })
 
 let currentUser = AV.User.current()
 if (currentUser) {
     app.currentUser = currentUser.toJSON()
-    console.log(app.currentUser)
     app.getResume()
+    app.shareURL = location.origin + location.pathname + '?user_id' + app.currentUser.objectId
+    console.log(app.shareURL)
 }

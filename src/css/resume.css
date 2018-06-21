@@ -63,7 +63,7 @@ input {
     max-width: 940px;
     margin: 0 auto;
     background-color: #35363B;
-    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5)
+    box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.5);
 }
 
 .userCard .welcome {
