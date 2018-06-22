@@ -1,29 +1,29 @@
-body.dark .page {
+body.white .page {
     background-color: #EFEFEF;
     color: #6C6C6F;
 }
 
-body.dark .page>aside {
-    background-color: #FFFFFF;
+body.white .page>aside {
+    background-color: #EFEFEF;
 }
 
-body.dark .page>aside>div>div:hover {
+body.white .page>aside>div>div:hover {
     background: #35363B;
 }
 
-body.dark .userCard {
+body.white .userCard {
     background: #dddddd;
 }
 
-body.dark .userCard footer {
+body.white .userCard footer {
     background: #E8676B;
 }
 
-body.dark .skills ol,
-body.dark .works ol {
+body.white .skills ol,
+body.white .works ol {
     background-color: #FFFFFF;
 }
 
-.resumeDown a {
+body.white .resumeDown a {
     background: #FFFFFF;
 }

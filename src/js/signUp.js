@@ -29,6 +29,7 @@ Vue.component('signUp', {
     },
     template: `
         <div  class="signUp" v-cloak>
+            <div id="particles-js"></div>
             <form class="form" @submit.prevent="saveUser()">
                 <h1>注册</h1>
                 <div class="close" @click="$emit('close')">

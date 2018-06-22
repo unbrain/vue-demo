@@ -1,3 +1,7 @@
+
+particlesJS.load('particles-js', './js/particles.json', function () {
+    console.log('callback - particles.js config loaded');
+});
 let app = new Vue({
     el: '#app',
     data: {
@@ -148,3 +152,4 @@ if (matches) {
         app.previewResume = resume
     })
 }
+
