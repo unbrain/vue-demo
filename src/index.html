@@ -18,7 +18,7 @@
 
 <body>
     <div class="page" id="app">
-        <app-aside v-if="mode === 'edit'" @share="onClickSave()" @share="shareVisible = !shareVisible" :current-user="currentUser" @logout="logOut" @signup="onClickSave"></app-aside>
+        <app-aside v-if="mode === 'edit'" @on-click-save="onClickSave()" @share="shareVisible = !shareVisible" :current-user-id="currentUser.objectId" @logout="logOut" @signup="onClickSave"></app-aside>
         <resume :mode="mode" :display-resume="displayResume" @on-edit="onEdit" @mode-edit="mode='edit'" @mode-preview="mode='preview';previewResume = resume"></resume>
         <login v-show="loginVisible" @close="loginVisible=false" @go-sign-up="signUpVisible=true;loginVisible=false" @login-user="loginUser(user)"></login>
         <sign-up v-show="signUpVisible" @close="signUpVisible=false" @go-login="signUpVisible=false;loginVisible=true"></sign-up>
