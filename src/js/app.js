@@ -5,7 +5,7 @@ let app = new Vue({
         signUpVisible: false,
         shareVisible: false,
         shareURL: '',
-        previewResume:{},
+        previewResume: {},
         mode: 'edit',
         resume: {
             name: '李安',
@@ -32,15 +32,7 @@ let app = new Vue({
                 { name: '无脸人', skills: '原生 JavaScript、响应式，Prism.js, CSS annimation', description: '该项目使得代码展示在屏幕，并根据代码画出了一个无脸人' },
                 { name: '网易云音乐', skills: 'jQuery，leandcloud，七牛云', description: '该项目使用 jQuery 模仿网易云音乐手机端，完成手机端功能并写有 PC 端后台。' },
             ],
-            
-        },
-        signUpData: {
-            email: '',
-            password: '',
-        },
-        loginData: {
-            email: '',
-            password: '',
+
         },
         currentUser: {
             objectId: undefined,
@@ -49,7 +41,6 @@ let app = new Vue({
         previewUser: {
             objectId: undefined,
         }
-
     },
     watch: {
         'currentUser.objectId': function (newVal, oldVal) {
@@ -98,36 +89,17 @@ let app = new Vue({
             });
 
         },
-        saveUser() {
-            console.log(this.signUpData)
-            // 新建 AVUser 对象实例
-            var user = new AV.User()
-            // 设置用户名
-            user.setUsername(this.signUpData.email)
-            // 设置密码
-            user.setPassword(this.signUpData.password)
-            // 设置邮箱
-            user.setEmail(this.signUpData.email)
-            user.signUp().then((loggedInUser) => {
-                this.signUpVisible = false
-                this.currentUser.objectId = loggedInUser.toJSON().objectId
-                this.currentUser.email = loggedInUser.toJSON().email
-                alert('注册成功')
-                console.log(loggedInUser)
-            }, function (error) {
-                alert(error.rawMessage)
-            });
+        saveUser(user) {
+            this.signUpVisible = false
+            this.currentUser.objectId = user.objectId
+            this.currentUser.email = user.email
+            alert('注册成功')
         },
-        loginUser() {
-            AV.User.logIn(this.loginData.email, this.loginData.password).then((loggedInUser) => {
-                this.loginVisible = false
-                this.currentUser.objectId = loggedInUser.toJSON().objectId
-                this.currentUser.email = loggedInUser.toJSON().email
-                alert('登录成功')
-                app.getResume(this.currentUser)
-            }, function (error) {
-                alert(error.rawMessage)
-            });
+        loginUser(user) {
+            this.loginVisible = false
+            this.currentUser.objectId = user.objectId
+            this.currentUser.email = user.email
+            alert('登录成功')
         },
         logOut() {
             if (!this.currentUser.objectId) {
@@ -150,7 +122,6 @@ let app = new Vue({
                 // 异常处理
             });
         },
-
     },
 })
 
@@ -163,9 +134,6 @@ if (currentUser) {
     })
     app.shareURL = location.origin + location.pathname + '?user_id' + app.currentUser.objectId
 }
-
-
-
 // 获取预览用户的 id
 
 let search = location.search

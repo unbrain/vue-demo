@@ -16,6 +16,9 @@ Vue.component('resume', {
         minusWork(index) {
             this.displayResume.works.splice(index, 1)
         },
+        onEdit(k, v) {
+            this.$emit('on-edit', k, v)
+        },
     },
     template: `
     <main>
@@ -147,10 +150,14 @@ Vue.component('resume', {
                 </ol>
             </section>
     
-            <p v-if="mode === 'edit'" class="resumeDown" @click="mode = 'preview'">
+            <p v-if="mode === 'edit'" class="resumeDown" @click="$emit('mode-preview')">
                 <a target="_blank" class="button" download="">预览 PDF 简历</a>
             </p>
+            <div class="exitPreview" v-if="mode === 'preview'" @click="$emit('mode-edit')">
+                <button>退出预览</button>
+            </div>
         </div>
+        
     </main>
     `
 })

@@ -18,88 +18,22 @@
 
 <body>
     <div class="page" id="app">
-        <aside v-show="mode === 'edit'">
-            <div class="up">
-                <div @click="onClickSave()">保存</div>
-                <div @click="shareVisible = !shareVisible">分享</div>
-                <div>换肤</div>
-                <div @click="window.print()">打印</div>
-            </div>
-
-
-            <div class="down" v-cloak>
-                <div @click="logOut()" v-show="currentUser.objectId">登出</div>
-                <div @click="onClickSave()" v-show="!currentUser.objectId">注册</div>
-            </div>
-        </aside>
-        
-        <resume :mode="mode" :display-resume="displayResume"></resume>
-        <div v-show="loginVisible" class="login" v-cloak>
-            <form class="form" @submit.prevent="loginUser">
-                <h1>登录</h1>
-                <div class="close" @click="loginVisible=false">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-close"></use>
-                    </svg>
-                </div>
-                <div class="row">
-                    <label for="">邮箱</label>
-                    <input type="text" v-model="loginData.email">
-                </div>
-                <div class="row">
-                    <label for="">密码</label>
-                    <input type="password" v-model="loginData.password">
-                </div>
-                <div class="actions">
-                    <button type="submit">提交</button>
-                    <button @click="loginVisible = false; signUpVisible = true " type="button">注册</button>
-                </div>
-            </form>
-        </div>
-        <div v-show="signUpVisible" class="signUp" v-cloak>
-            <form class="form" @submit.prevent="saveUser()">
-                <h1>注册</h1>
-                <div class="close" @click="signUpVisible=false">
-                    <svg class="icon" aria-hidden="true">
-                        <use xlink:href="#icon-close"></use>
-                    </svg>
-                </div>
-                <div class="row">
-                    <label for="">邮箱</label>
-                    <input type="text" v-model="signUpData.email">
-                </div>
-                <div class="row">
-                    <label for="">密码</label>
-                    <input type="password" v-model="signUpData.password">
-                </div>
-                <div class="actions">
-                    <button type="submit">提交</button>
-                    <button @click="signUpVisible = false; loginVisible = true" type="button">登录</button>
-                </div>
-            </form>
-        </div>
-        <div v-show="shareVisible" class="share" v-cloak>
-            <h1>分享链接</h1>
-            <div class="close" @click="shareVisible=false">
-                <svg class="icon" aria-hidden="true">
-                    <use xlink:href="#icon-close"></use>
-                </svg>
-            </div>
-            <textarea readonly>{{ shareURL }}</textarea>
-        </div>
-        <div class="exitPreview" v-if="mode === 'preview'" @click="mode = 'edit'">
-            <button>退出预览</button>
-        </div>
-
-
-
+        <app-aside v-if="mode === 'edit'" @share="onClickSave()" @share="shareVisible = !shareVisible" :current-user="currentUser" @logout="logOut" @signup="onClickSave"></app-aside>
+        <resume :mode="mode" :display-resume="displayResume" @on-edit="onEdit" @mode-edit="mode='edit'" @mode-preview="mode='preview';previewResume = resume"></resume>
+        <login v-show="loginVisible" @close="loginVisible=false" @go-sign-up="signUpVisible=true;loginVisible=false" @login-user="loginUser(user)"></login>
+        <sign-up v-show="signUpVisible" @close="signUpVisible=false" @go-login="signUpVisible=false;loginVisible=true"></sign-up>
+        <share v-show="shareVisible" :share-url="shareURL" @close="shareVisible=false"></share>
     </div>
 
     <script src="../vendors/av-min.js"></script>
     <script src="../vendors/vue.min.js"></script>
     <script src="./js/av.js"></script>
     <script src="./js/editable-span.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/signUp.js"></script>
     <script src="./js/resume.js"></script>
+    <script src="./js/share.js"></script>
+    <script src="./js/app-aside.js"></script>
     <script src="./js/app.js"></script>
     <script>
 
