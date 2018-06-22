@@ -88,10 +88,6 @@ Vue.component('resume', {
                 </div>
             </div>
     
-            <p class="selfIntroduction">
-                <editable-span :disabled="mode === 'preview'" :value="displayResume.about" @edit="onEdit('about', $event)"></editable-span>
-            </p>
-    
             <section data-y class="skills" id="jSkills">
                 <h2>技能列表</h2>
                 <ol>

@@ -1,3 +1,4 @@
+
 Vue.component('login', {
     props: ['loginVisible',],
     data() {
@@ -23,7 +24,7 @@ Vue.component('login', {
     },
     template: `
         <div class="login" v-cloak>
-            <div id="particles-js"></div>
+            
             <form class="form" @submit.prevent="loginUser()">
                 <h1>登录</h1>
                 <div class="close" >

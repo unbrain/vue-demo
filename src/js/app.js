@@ -1,7 +1,4 @@
 
-particlesJS.load('particles-js', './js/particles.json', function () {
-    console.log('callback - particles.js config loaded');
-});
 let app = new Vue({
     el: '#app',
     data: {
@@ -21,8 +18,6 @@ let app = new Vue({
             email: 'marsorsun@gmil.com',
             description: '心猿码意',
             job: '前端工程师',
-            about: `Now I have come to the crossroads in my life. I always knew what the right path was. Without exception, I knew. But I never
-                    took it, you know why? It was too damn hard`,
             skills: [
                 { name: 'HTML5 & CSS3', description: '能独立制作精美网页，掌握 CSS 3 动画、过渡效果、响应式等常用技术。' },
                 { name: '移动端页面 ', description: '会使用 REM、vw/vh、FastClick 等技术制作适配手机设备的页面。' },
