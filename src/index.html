@@ -32,242 +32,74 @@
                 <div @click="onClickSave()" v-show="!currentUser.objectId">注册</div>
             </div>
         </aside>
-        <main>
-            <div id="particles-js"></div>
-            <!-- <div class="topNavBar clearfix" id="topNav">
-                <div class="topNavBar-inner">
-                    <a class="logo" src="#" alt="logo">
-                        <span class="lzy">Lzy</span>
-                    </a>
-                    <nav class="meau">
-                        <ul class="clearfix">
-                            <li class="meauTrigger">
-                                <a href="#jAbout">关于</a>
-                            </li>
-                            <li class="meauTrigger">
-                                <a href="#jSkills">技能</a>
-                            </li>
-                            <li class="meauTrigger">
-                                <a href="#jWorks">作品</a>
-                                <ul class="submenu">
-                                    <li>作品1</li>
-                                    <li>作品2</li>
-                                    <li>作品3</li>
-                                </ul>
-                            </li>
-                            <li class="meauTrigger">
-                                <a href="#jMessages">留言</a>
-                            </li>
-                            <li class="meauTrigger"><a href="#jCal" >博客</a></li>
-                                        <li class="meauTrigger">
-                                            <a href="#jComms" >联系方式</a>
-                                            <ul class="submenu">
-                                                <li>方式1</li>
-                                                <li>方式2</li>
-                                                <li>方式3</li>
-                                            </ul>
-                                        </li>
-                                        <li class="meauTrigger"><a href="#jOther" >其他</a></li>
-                        </ul>
-                    </nav>
-                </div>
-            </div> -->
-
-            <div class="banner">
-                <div class="mark"></div>
-            </div>
-            <main>
-                <div class="your-element" data-tilt>
-                    <div data-y class="userCard" id="jAbout">
-                        <div class="pictureandtext">
-                            <div class="text">
-                                <span class="welcome">
-                                    <editable-span :disabled="mode === 'preview'" :value="resume.job" @edit="onEdit('job', $event)"></editable-span>
-                                    <span class="triangle"></span>
-                                </span>
-                                <h1>
-                                    <editable-span :disabled="mode === 'preview'" :value="resume.name" @edit="onEdit('name', $event)"></editable-span>
-                                </h1>
-                                <p>
-                                    <editable-span :disabled="mode === 'preview'" :value="resume.description" @edit="onEdit('description', $event)">
-                                </p>
-                                <hr>
-                                <dl>
-                                    <dt>年龄</dt>
-                                    <dd>
-                                        <editable-span :disabled="mode === 'preview'" :value="resume.age" @edit="onEdit('age', $event)">
-                                    </dd>
-                                    <dt>学校</dt>
-                                    <dd>
-                                        <editable-span :disabled="mode === 'preview'" :value="resume.school" @edit="onEdit('school', $event)">
-                                    </dd>
-                                    <dt>邮箱</dt>
-                                    <dd>
-                                        <editable-span :disabled="mode === 'preview'" :value="resume.email" @edit="onEdit('email', $event)">
-                                    </dd>
-                                    <dt>手机</dt>
-                                    <dd>
-                                        <editable-span :disabled="mode === 'preview'" :value="resume.phone" @edit="onEdit('phone', $event)"></editable-span>
-                                    </dd>
-                                </dl>
-                            </div>
-                            <div class="picture">
-                            </div>
-                        </div>
-                        <footer class="media">
-                            <a href="#">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-github-square"></use>
-                                </svg>
-                            </a>
-                            <a href="#">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-zhihu"></use>
-                                </svg>
-                            </a>
-                            <a href="#">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-weixin"></use>
-                                </svg>
-                            </a>
-                            <a href="#">
-                                <svg class="icon" aria-hidden="true">
-                                    <use xlink:href="#icon-gmail"></use>
-                                </svg>
-                            </a>
-                        </footer>
-                    </div>
-                </div>
-
-                <p class="selfIntroduction">
-                    <editable-span :disabled="mode === 'preview'" :value="resume.about" @edit="onEdit('about', $event)"></editable-span>
-                </p>
-
-                <section data-y class="skills" id="jSkills">
-                    <h2>技能列表</h2>
-                    <ol>
-                        <li v-for="skill,index in resume.skills">
-                            <h3>
-                                <editable-span :disabled="mode === 'preview'" :value="skill.name" @edit="onEdit(`skills[${index}].name`, $event)"></editable-span>
-                                <svg v-if="index > 3 && mode === 'edit'" class="icon minusSkill" @click="minusSkill(index)">
-                                    <use xlink:href="#icon-minus"></use>
-                                </svg>
-                            </h3>
-                            <div class="proBar"></div>
-                            <h4>
-                                <editable-span :disabled="mode === 'preview'" :value="skill.description" @edit="onEdit('skills[${index}].description', $event)"></editable-span>
-                            </h4>
-                        </li>
-                        <svg v-if="mode === 'edit'" class="icon appendSkill" @click="appendSkill()">
-                            <use xlink:href="#icon-add"></use>
-                        </svg>
-                    </ol>
-
-                </section>
-                <section data-y class="works" id="jWorks">
-                    <h2>项目经历</h2>
-                    <ol>
-                        <li v-for="work, index in resume.works">
-                            <div class="skillTitile">
-                                <h3>
-                                    <editable-span :disabled="mode === 'preview'" :value="work.name" @edit="onEdit(`works[${index}].name`, $event)"></editable-span>
-                                    <svg v-if="index > 3 && mode === 'edit'" class="icon minusWork" @click="minusWork(index)">
-                                        <use xlink:href="#icon-minus"></use>
-                                    </svg>
-                                </h3>
-                                <h3>
-                                    <button>
-                                        <a :href="work.link">源码链接</a>
-                                    </button>
-                                    <button>
-                                        <a :href="work.codeLink">项目链接</a>
-                                    </button>
-                                </h3>
-                            </div>
-
-                            <div class="proBar"></div>
-                            <h4>技术栈:</h4>
-                            <h5>
-                                <editable-span :disabled="mode === 'preview'" :value="work.skills" @edit="onEdit(`works[${index}].skills`, $event)"></editable-span>
-                            </h5>
-                            <h4>项目描述:</h4>
-                            <h5>
-                                <editable-span :disabled="mode === 'preview'" :value="work.description" @edit="onEdit(`works[${index}].description`, $event)"></editable-span>
-                            </h5>
-                        </li>
-                        <svg v-if="mode === 'edit'" class="icon appendWork" @click="appendWork()">
-                            <use xlink:href="#icon-add"></use>
-                        </svg>
-                    </ol>
-                </section>
-
-                <p v-if="mode === 'edit'" class="resumeDown" @click="mode = 'preview'">
-                    <a target="_blank" class="button" download="" >预览 PDF 简历</a>
-                </p>
-            </main>
-
-            <div v-show="loginVisible" class="login" v-cloak>
-                <form class="form" @submit.prevent="loginUser">
-                    <h1>登录</h1>
-                    <div class="close" @click="loginVisible=false">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-close"></use>
-                        </svg>
-                    </div>
-                    <div class="row">
-                        <label for="">邮箱</label>
-                        <input type="text" v-model="loginData.email">
-                    </div>
-                    <div class="row">
-                        <label for="">密码</label>
-                        <input type="password" v-model="loginData.password">
-                    </div>
-                    <div class="actions">
-                        <button type="submit">提交</button>
-                        <button @click="loginVisible = false; signUpVisible = true " type="button">注册</button>
-                    </div>
-                </form>
-            </div>
-            <div v-show="signUpVisible" class="signUp" v-cloak>
-                <form class="form" @submit.prevent="saveUser()">
-                    <h1>注册</h1>
-                    <div class="close" @click="signUpVisible=false">
-                        <svg class="icon" aria-hidden="true">
-                            <use xlink:href="#icon-close"></use>
-                        </svg>
-                    </div>
-                    <div class="row">
-                        <label for="">邮箱</label>
-                        <input type="text" v-model="signUpData.email">
-                    </div>
-                    <div class="row">
-                        <label for="">密码</label>
-                        <input type="password" v-model="signUpData.password">
-                    </div>
-                    <div class="actions">
-                        <button type="submit">提交</button>
-                        <button @click="signUpVisible = false; loginVisible = true" type="button">登录</button>
-                    </div>
-                </form>
-            </div>
-            <div v-show="shareVisible" class="share" v-cloak>
-                <h1>分享链接</h1>
-                <div class="close" @click="shareVisible=false">
+        
+        <resume :mode="mode" :display-resume="displayResume"></resume>
+        <div v-show="loginVisible" class="login" v-cloak>
+            <form class="form" @submit.prevent="loginUser">
+                <h1>登录</h1>
+                <div class="close" @click="loginVisible=false">
                     <svg class="icon" aria-hidden="true">
                         <use xlink:href="#icon-close"></use>
                     </svg>
                 </div>
-                <textarea readonly>{{ shareURL }}</textarea>
+                <div class="row">
+                    <label for="">邮箱</label>
+                    <input type="text" v-model="loginData.email">
+                </div>
+                <div class="row">
+                    <label for="">密码</label>
+                    <input type="password" v-model="loginData.password">
+                </div>
+                <div class="actions">
+                    <button type="submit">提交</button>
+                    <button @click="loginVisible = false; signUpVisible = true " type="button">注册</button>
+                </div>
+            </form>
+        </div>
+        <div v-show="signUpVisible" class="signUp" v-cloak>
+            <form class="form" @submit.prevent="saveUser()">
+                <h1>注册</h1>
+                <div class="close" @click="signUpVisible=false">
+                    <svg class="icon" aria-hidden="true">
+                        <use xlink:href="#icon-close"></use>
+                    </svg>
+                </div>
+                <div class="row">
+                    <label for="">邮箱</label>
+                    <input type="text" v-model="signUpData.email">
+                </div>
+                <div class="row">
+                    <label for="">密码</label>
+                    <input type="password" v-model="signUpData.password">
+                </div>
+                <div class="actions">
+                    <button type="submit">提交</button>
+                    <button @click="signUpVisible = false; loginVisible = true" type="button">登录</button>
+                </div>
+            </form>
+        </div>
+        <div v-show="shareVisible" class="share" v-cloak>
+            <h1>分享链接</h1>
+            <div class="close" @click="shareVisible=false">
+                <svg class="icon" aria-hidden="true">
+                    <use xlink:href="#icon-close"></use>
+                </svg>
             </div>
-            <div class="exitPreview" v-if="mode === 'preview'" @click="mode = 'edit'"><button>退出预览</button></div>
-    </div>
+            <textarea readonly>{{ shareURL }}</textarea>
+        </div>
+        <div class="exitPreview" v-if="mode === 'preview'" @click="mode = 'edit'">
+            <button>退出预览</button>
+        </div>
 
-    </main>
+
+
     </div>
 
     <script src="../vendors/av-min.js"></script>
     <script src="../vendors/vue.min.js"></script>
     <script src="./js/av.js"></script>
+    <script src="./js/editable-span.js"></script>
+    <script src="./js/resume.js"></script>
     <script src="./js/app.js"></script>
     <script>
 

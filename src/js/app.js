@@ -1,24 +1,3 @@
-Vue.component('editable-span', {
-    props: ['value', 'disabled'],
-    template: `
-        <span class="editable-span">
-            <span @click="editing = disabled ? editing : !editing" v-show="!editing">{{ value }}</span>
-            <input v-show="editing" type="text" :value="value" @input="editTri" @keyup.enter="editing=!editing">
-            <svg v-if='!disabled' class="icon" aria-hidden="true" @click="editing=!editing">
-                <use xlink:href="#icon-edit"></use>
-            </svg>
-        </span>
-    `,
-    data() {
-        return { editing: false }
-    },
-    methods: {
-        editTri(e) {
-            this.$emit('edit', e.target.value)
-        }
-    },
-})
-
 let app = new Vue({
     el: '#app',
     data: {
@@ -170,18 +149,6 @@ let app = new Vue({
             }, (error) => {
                 // 异常处理
             });
-        },
-        appendSkill() {
-            this.resume.skills.push({ name: '技能名', description: '技能描述' })
-        },
-        minusSkill(index) {
-            this.resume.skills.splice(index, 1)
-        },
-        appendWork() {
-            this.resume.works.push({ name: '项目名称', skills: '技术点', description: '描述' })
-        },
-        minusWork(index) {
-            this.resume.works.splice(index, 1)
         },
 
     },
