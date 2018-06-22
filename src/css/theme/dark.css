@@ -1,0 +1,29 @@
+body.dark .page {
+    background-color: #29282C;
+    color: #6C6C6F;
+}
+
+body.dark .page>aside {
+    background-color: #2C2C31;
+}
+
+body.dark .page>aside>div>div:hover {
+    background: #B4E1DC;
+}
+
+body.dark .userCard {
+    background-color: #35363B;
+}
+
+body.dark .userCard footer {
+    background-color: #fff;
+}
+
+body.dark .skills ol,
+body.dark .works ol {
+    background-color: #35363B;
+}
+
+.resumeDown a {
+    background: #27292E;
+}

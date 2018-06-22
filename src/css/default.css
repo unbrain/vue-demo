@@ -24,10 +24,8 @@ li {
 }
 
 .page {
-    background-color: #29282C;
     display: flex;
     height: 100vh;
-    color: #6C6C6F;
 }
 
 .page>aside {
@@ -35,7 +33,6 @@ li {
     flex-direction: column;
     width: 80px;
     justify-content: space-between;
-    background-color: #2C2C31;
     box-shadow: 10px 0px 37px -3px rgba(0, 0, 0, 0.6);
 }
 
@@ -46,7 +43,6 @@ li {
 
 .page>aside>div>div:hover {
     transition: 2s;
-    background: #B4E1DC;
 }
 
 .page>aside>div>div {

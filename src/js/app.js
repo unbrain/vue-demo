@@ -4,6 +4,7 @@ let app = new Vue({
         loginVisible: false,
         signUpVisible: false,
         shareVisible: false,
+        themeVisible: false,
         shareURL: '',
         previewResume: {},
         mode: 'edit',

@@ -14,7 +14,7 @@ Vue.component('app-aside', {
             <div class="up">
                 <div @click="$emit('on-click-save')">保存</div>
                 <div @click="share">分享</div>
-                <div>换肤</div>
+                <div @click="$emit('theme')">换肤</div>
                 <div @click="window.print()">打印</div>
             </div>
 
