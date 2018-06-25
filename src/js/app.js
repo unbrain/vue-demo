@@ -35,7 +35,7 @@ let app = new Vue({
 
         },
         currentUser: {
-            objectId: undefined,
+            objectId: '',
             email: '',
         },
         previewUser: {
@@ -100,6 +100,7 @@ let app = new Vue({
             this.currentUser.objectId = user.objectId
             this.currentUser.email = user.email
             alert('登录成功')
+            window.location.reload()
         },
         logOut() {
             if (!this.currentUser.objectId) {
