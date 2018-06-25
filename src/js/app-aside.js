@@ -12,16 +12,16 @@ Vue.component('app-aside', {
     template: `
         <aside>
             <div class="up">
-                <div @click="$emit('on-click-save')">保存</div>
-                <div @click="share">分享</div>
-                <div @click="$emit('theme')">换肤</div>
-                <div @click="window.print()">打印</div>
+                <wired-button elevation="3" @click="$emit('on-click-save')">保存</wired-button>
+                <wired-button elevation="3" @click="share">分享</wired-button>
+                <wired-button elevation="3" @click="$emit('theme')">换肤</wired-button>
+                <wired-button elevation="3" @click="window.print()">打印</wired-button>
             </div>
 
 
             <div class="down" v-cloak>
-                <div @click="$emit('logout')" v-show="currentUserId">登出</div>
-                <div @click="$emit('signup')" v-show="!currentUserId">注册</div>
+                <wired-button elevation="3" @click="$emit('logout')" v-show="currentUserId">登出</wired-button>
+                <wired-button elevation="3" @click="$emit('signup')" v-show="!currentUserId">注册</wired-button>
             </div>
         </aside>
     `
