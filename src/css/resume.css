@@ -11,11 +11,15 @@ button {
 }
 
 input {
-    height: 2em;
-    color: #000;
+    height: inherit;
+    width: inherit;
+    font-size: initial;
+    color: #fff;
     padding: 0 .5em;
-    border-radius: 5px;
     border: transparent;
+    background: inherit;
+    border-bottom: 1px solid #fff;
+    outline-style: none;
 }
 
 .clearfix::after {
